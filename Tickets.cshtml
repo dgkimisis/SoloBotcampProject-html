@@ -1,0 +1,28 @@
+@model List<WorldTour.Models.Tickets>
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tickets</title>
+</head>
+<body>
+    <div>
+@for (i = 0; i < 6; i++)
+          {
+            <form method="post" action="@Url.Action("AddTicketDetails", "Home")">     
+                <tr>
+                    <td><input name="Tickets[0].TicketName" /></td>
+                    <td><input name="people[0].name" /></td>
+                </tr>
+           }
+        </form>
+
+    </div>
+</body>
+</html>

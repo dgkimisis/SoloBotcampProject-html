@@ -1,4 +1,4 @@
-@model IEnumerable<WorldTour.Models.Ticket>
+@model List<Tour.Models.Ticket>
 
 @{
     Layout = null;
@@ -11,17 +11,19 @@
     <meta name="viewport" content="width=device-width" />
     <title>Tickets</title>
 </head>
-    <body>
-        <div>       
-            <form method="post" action="@Url.Action("AddTicketDetails", "Home")">
-
-                    @for (int i = 0; i < @ViewBag.Q; i++)
-                    {
-                        <input type="text" name="Tickets[i].TicketName" />
-                        <input name="people[0].name" />
-                    }
-                  <button type="submit" style="margin-left:100px;">Submit Tickets</button>
-          </form>
-      </div>
-   </body>
+<body>
+    <div>
+        @using (Html.BeginForm("AddTicketDetails", "Home", FormMethod.Post))
+        {
+            foreach (var ticket in Model)
+            {
+                @Html.TextBoxFor(m => ticket.TicketName)
+                @Html.TextBoxFor(m => ticket.Class)
+            }
+        }
+    </div>
+    <div>
+        @ViewBag.Q;
+    </div>
+</body>
 </html>

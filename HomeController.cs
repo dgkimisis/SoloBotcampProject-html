@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WorldTour.Models;
+using Tour.Models;
 
 namespace WorldTour.Controllers
 {
@@ -32,6 +32,9 @@ namespace WorldTour.Controllers
                 //We pass quantity to view
                 quantity = booking.Quantity;
                 ViewBag.Q = quantity;
+
+
+
                 return View();
             }
         }
@@ -43,13 +46,14 @@ namespace WorldTour.Controllers
         {
             using (TourContext db = new TourContext())
             {
-                //foreach(var item in t)
-                //{
+                for (int i = 0; i < 7; i++)
+                {
                     var ticket = new Ticket { TicketName = t.TicketName, Class = t.Class };
-                //}
-
+                    db.Tickets.Add(ticket);
+                    db.SaveChanges();
+                }
+                return View("Tickets");
             }
-            return View("Tickets");
         }
     }
 }

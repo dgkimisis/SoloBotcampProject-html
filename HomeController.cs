@@ -14,36 +14,40 @@ namespace WorldTour.Controllers
             return View();
         }
 
-        //Quantity will be given by Booking Controller
 
-        public ActionResult TicketQuantity()
+        //Quantity will be given by Booking Controller
+        public ActionResult SampleBooking(int quantity)
         {
-            using (WorldModel db = new WorldModel())
+            using (TourContext db = new TourContext())
             {
-                //We are creating a demo Booking 
-                var booking = new Booking
+                //We create a demo booking 
+                var booking = new Booking()
                 {
                     Quantity = 8,
                     BookingName = "Giorgos Panagopoulos",
                     Email = "gpana@gmail.com"
                 };
-                db.Booking.Add(booking);
-                return View("Tickets");
-            }        
-        }
+                //db.Bookings.Add(booking);
 
+                //We pass quantity to view
+                quantity = booking.Quantity;
+                ViewBag.Q = quantity;
+                return View();
+            }
+        }
 
         //Here we are going to get input from the user
         //about the details of the passengers
         [HttpPost]
-        public ActionResult AddTicketDetails(List<Tickets> lt, int q)
+        public ActionResult AddTicketDetails(Ticket t)
         {
-            using (WorldModel db = new WorldModel())
+            using (TourContext db = new TourContext())
             {
-                foreach(var ticket in lt)
-                {
+                //foreach(var item in t)
+                //{
+                    var ticket = new Ticket { TicketName = t.TicketName, Class = t.Class };
+                //}
 
-                }
             }
             return View("Tickets");
         }

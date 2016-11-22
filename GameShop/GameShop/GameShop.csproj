@@ -147,9 +147,7 @@
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GamePublisher.cs" />
-    <Compile Include="Models\ManyGames.cs" />
-    <Compile Include="Models\ViewModel.cs" />
+    <Compile Include="Models\GameRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

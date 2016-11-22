@@ -15,5 +15,6 @@ namespace GameShop.Models
         public string Genre { get; set; }
         public int ViolenceRating { get; set; }
         public int Cost { get; set; }
+        public string Company { get; set; }
     }
 }

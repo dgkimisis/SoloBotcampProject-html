@@ -1,4 +1,4 @@
-﻿@model GameShop.Models.ViewModel
+﻿@model GameShop.Models.GameRepository
 
 @{
     Layout = null;
@@ -15,11 +15,23 @@
     <h2>GET INTO GAME ACTION</h2>
    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
    {
+    ViewBag.
+    for (int i = 0; i < Model.Games.Count(); i++)
     <div> 
-        <p>   
+        <p>Choose Game By</p>
+        <p>Name:</p>
+        Html.TextBoxFor(m => m.)
+        <p>Genre:</p>
+
+        <p>Release Year:</p>
+
+        <p>Violence Rating:</p>
+        
+        <p></p>   
+           
               Html.TextBoxFor(m => m.makis)
               Html.TextBoxFor(m => m.psomiadis)
-        </p>
+        </>
     </div>
    }
 </body>

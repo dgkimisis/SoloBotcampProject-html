@@ -14,25 +14,21 @@ namespace GameShop.Controllers
         {
             return View();
         }
-
-        public ActionResult Search(ViewModel vm)
+        [HttpPost]
+        public ActionResult Search(GameRepository repository, string name, string genre, int year1, int year2, int viorating, int cost, string company)
         {
-            var db = new GameContext();
-            //ViewModel request = new Models.ViewModel()
-            //{
-            //    Games = vm.Games,
-            //    makis = vm.makis
-            //};
-
-            GamePublisher gp = new GamePublisher
+            if (ModelState.IsValid)
             {
-                CompanyName = vm.makis,
-                CEOName = vm.psomiadis
-            };
-            
-            db.GamePublisher.Add(gp);
-            db.Games.Add(vm.Games);
-            return View();
+                ViewBag.GenderGames = repository.Games.Where(x => x.Name == name)
+                                                      .Where(x => x.Genre == genre)
+                                                      .Where(x => year1<x.PublishYear<year2)
+                                                      .Where(x => x.ViolenceRating == viorating)
+                                                      .Where(XmlSiteMapProvider => )
+            }
+            else
+            { 
+}
+                return View();
         }
 
 

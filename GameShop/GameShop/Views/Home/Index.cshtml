@@ -1,0 +1,26 @@
+﻿@model GameShop.Models.ViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h2>GET INTO GAME ACTION</h2>
+   @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+   {
+    <div> 
+        <p>   
+              Html.TextBoxFor(m => m.makis)
+              Html.TextBoxFor(m => m.psomiadis)
+        </p>
+    </div>
+   }
+</body>
+</html>

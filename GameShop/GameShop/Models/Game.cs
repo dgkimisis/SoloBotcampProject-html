@@ -8,8 +8,6 @@ namespace GameShop.Models
 {
     public class Game
     {
-        [Key]
-        public int GameId { get; set; }
         public string Name { get; set; }
         public int PublishYear { get; set; }
         public string Genre { get; set; }

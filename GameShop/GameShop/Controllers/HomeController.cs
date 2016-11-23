@@ -14,24 +14,33 @@ namespace GameShop.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Search(GameRepository repository, string name, string genre, int year1, int year2, int viorating, int cost, string company)
+
+        //public ActionResult Search(GameRepository rdb, )
+        //{
+        //    var games = rdb.Games.Where
+        //}
+
+        public ActionResult Search(string name, string genre, int? year1, int? year2, int viorating, int? cost, string company)
         {
-            if (ModelState.IsValid)
-            {
-                ViewBag.GenderGames = repository.Games.Where(x => x.Name == name)
-                                                      .Where(x => x.Genre == genre)
-                                                      .Where(x => year1<x.PublishYear<year2)
-                                                      .Where(x => x.ViolenceRating == viorating)
-                                                      .Where(XmlSiteMapProvider => )
-            }
-            else
-            { 
-}
-                return View();
+            var games = rdb.Games.Where(x => x.Name == name || x.Genre = )
+                                 .Where(x => x.Genre == genre)
+                                 .Where(x => Enumerable(year1, year2)
+                                 .Where(x => x. == genre)
+                                 .Where(x => x.Genre == genre)
+                                 .Where(x => x.Genre == genre)
+                                 .ToList();
+            return View(games)
         }
 
-
-
-    }
+        public ActionResult Display(string name, string genre, int? year1, int? year2, int viorating, int? cost, string company)
+        {
+            var games = rdb.Games.Where(x => x.Name == name|| x.Genre = )
+                                 .Where(x => x.Genre == genre)
+                                 .Where(x => Enumerable(year1, year2)
+                                 .Where(x => x. == genre)
+                                 .Where(x => x.Genre == genre)
+                                 .Where(x => x.Genre == genre)
+                                 .ToList();
+            return View(games)
+        }
 }

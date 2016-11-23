@@ -8,7 +8,7 @@ namespace GameShop.Models
 {
     public class GameRepository
     {
-       public IEnumerable<Game> Games = new List<Game>()
+       public List<Game> Games = new List<Game>()
        {
        new Game { Name = "Total War Warhammer", PublishYear = 2015, Genre = "Strategy", ViolenceRating = 4, Company="Creative Assembly"},
        new Game { Name = "Final Fantasy XI", PublishYear = 2013, Genre = "RPG", ViolenceRating = 3, Company="Square Enix"},

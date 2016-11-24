@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GameShop.Models;
+using System.Runtime.InteropServices;
 
 namespace GameShop.Controllers
 {
@@ -15,32 +16,58 @@ namespace GameShop.Controllers
             return View();
         }
 
-        //public ActionResult Search(GameRepository rdb, )
-        //{
-        //    var games = rdb.Games.Where
-        //}
+        //In this controller we are receiving the parameters according to which we want to do the game search
+        //string name, int? publishyear, string genre, int? viorating, string company
 
-        public ActionResult Search(string name, string genre, int? year1, int? year2, int viorating, int? cost, string company)
+        [HttpPost]
+        public ActionResult Search(SearchViewModel svm)
         {
-            var games = rdb.Games.Where(x => x.Name == name || x.Genre = )
-                                 .Where(x => x.Genre == genre)
-                                 .Where(x => Enumerable(year1, year2)
-                                 .Where(x => x. == genre)
-                                 .Where(x => x.Genre == genre)
-                                 .Where(x => x.Genre == genre)
-                                 .ToList();
-            return View(games)
-        }
+            //if (svm.Game.Name == null && svm.Game.PublishYear == null && svm.Game.Genre == null && svm.Game.Violence_Rating == null && svm.Game.Company == null)
+            //{
+            //    ModelState.AddModelError("", "You must add criteria to your search");
+            //    return View();
+            //}
+            //else
+            //{
+                GameContext gct = new GameContext();
+            //We need the list of Genres in our view and i pick them from viewmodel
+            var games = gct.Games.Select(x => x);
+                ViewBag.genres = games.Select(x => x.Genre).Distinct();
 
-        public ActionResult Display(string name, string genre, int? year1, int? year2, int viorating, int? cost, string company)
+                IQueryable<Games> g = gct.Games;
+
+                if (svm.Game.Name != null)
+                {
+                    g = g.Where(x => x.Name == svm.Game.Name);
+                }
+                if (svm.Game.PublishYear != null)
+                {
+                    g = g.Where(x => x.PublishYear == svm.Game.PublishYear);
+                }
+                if (svm.Game.Genre != null)
+                {
+                    g = g.Where(x => x.Genre == svm.Game.Genre);
+                }
+                if (svm.Game.Violence_Rating != null)
+                {
+                    g = g.Where(x => x.Violence_Rating == svm.Game.Violence_Rating);
+                }
+                if (svm.Game.Company != null)
+                {
+                    g = g.Where(x => x.Company == svm.Game.Company);
+                }
+                //Na prosthesw to .Distrinct()
+                var _games = g.ToList();
+                return View();
+                //return RedirectToAction("Display", _games);
+            }
+
+        
+
+        //In this controller we are going to display the results of the search
+        public ActionResult Display()
         {
-            var games = rdb.Games.Where(x => x.Name == name|| x.Genre = )
-                                 .Where(x => x.Genre == genre)
-                                 .Where(x => Enumerable(year1, year2)
-                                 .Where(x => x. == genre)
-                                 .Where(x => x.Genre == genre)
-                                 .Where(x => x.Genre == genre)
-                                 .ToList();
-            return View(games)
+            return View();
         }
+    }
 }

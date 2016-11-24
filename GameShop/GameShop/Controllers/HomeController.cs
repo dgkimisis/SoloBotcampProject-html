@@ -19,46 +19,54 @@ namespace GameShop.Controllers
         //In this controller we are receiving the parameters according to which we want to do the game search
         //string name, int? publishyear, string genre, int? viorating, string company
 
+        [HttpGet]
+        public ActionResult Search()
+        {
+            GameContext gct = new GameContext();
+
+            SearchViewModel svm1 = new SearchViewModel();
+
+            //Return List size to View
+            svm1.Quantity = gct.Games.Count();
+        
+            //Return list of strings
+            svm1.Genre = gct.Games.Select(x => x.Genre).Distinct().ToList();
+
+            //svm1.Genre = gct.Games;                 
+            return View(svm1);
+        }
+
         [HttpPost]
         public ActionResult Search(SearchViewModel svm)
         {
-            //if (svm.Game.Name == null && svm.Game.PublishYear == null && svm.Game.Genre == null && svm.Game.Violence_Rating == null && svm.Game.Company == null)
-            //{
-            //    ModelState.AddModelError("", "You must add criteria to your search");
-            //    return View();
-            //}
-            //else
-            //{
                 GameContext gct = new GameContext();
-            //We need the list of Genres in our view and i pick them from viewmodel
-            var games = gct.Games.Select(x => x);
-                ViewBag.genres = games.Select(x => x.Genre).Distinct();
-
+                SearchViewModel svm1 = new SearchViewModel();
+                svm.Quantity = gct.Games.Count();
+                //Optional Linq
                 IQueryable<Games> g = gct.Games;
-
-                if (svm.Game.Name != null)
+                if (svm.Games.Name != null)
                 {
-                    g = g.Where(x => x.Name == svm.Game.Name);
+                    g = g.Where(x => x.Name == svm.Games.Name);
                 }
-                if (svm.Game.PublishYear != null)
+                if (svm.Games.PublishYear != null)
                 {
-                    g = g.Where(x => x.PublishYear == svm.Game.PublishYear);
+                    g = g.Where(x => x.PublishYear == svm.Games.PublishYear);
                 }
-                if (svm.Game.Genre != null)
+                if (svm.Games.Genre != null)
                 {
-                    g = g.Where(x => x.Genre == svm.Game.Genre);
+                    g = g.Where(x => x.Genre == svm.Games.Genre);
                 }
-                if (svm.Game.Violence_Rating != null)
+                if (svm.Games.Violence_Rating != null)
                 {
-                    g = g.Where(x => x.Violence_Rating == svm.Game.Violence_Rating);
+                    g = g.Where(x => x.Violence_Rating == svm.Games.Violence_Rating);
                 }
-                if (svm.Game.Company != null)
+                if (svm.Games.Company != null)
                 {
-                    g = g.Where(x => x.Company == svm.Game.Company);
+                    g = g.Where(x => x.Company == svm.Games.Company);
                 }
                 //Na prosthesw to .Distrinct()
                 var _games = g.ToList();
-                return View();
+                return RedirectToAction("Display", _games);
                 //return RedirectToAction("Display", _games);
             }
 

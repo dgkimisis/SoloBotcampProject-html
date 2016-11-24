@@ -12,42 +12,51 @@
 <body>
     <h2>GET INTO GAME ACTION</h2>
 
+    @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+    {
+        <div>Genre:</div>
+        foreach (string item in Model.Genre)
+        {
+            <p>@Html.TextBoxFor(x => x.Genre)</p>
+        };
+    }
+
     @using (Html.BeginForm("Search", "Home", FormMethod.Post))
     {
-        <fieldset>
-            <p>Search the game you are looking for</p>
-            <div>Name:@Html.TextBoxFor(m => m.Game.Name);</div> 
-            @*<div>Genre:</div> @Html.DropDownListFor(ViewBag.genres);*@
-            <div> Publish Year:</div> @Html.TextBoxFor(m => m.Game.PublishYear);
-            <div> Violence Rating:</div> Html.TextBoxFor(m => m.max);
-            <div> Company:</div> Html.TextBoxFor(m => m.Game.Company);
-            <input type="submit" value="Submit" />
+       <fieldset>
+        <p>Search the game you are looking</p>
+        <div>Name:@Html.TextBoxFor(m => m.Games.Name);</div>
+        <div> Publish Year:</div> @Html.TextBoxFor(m => m.Games.PublishYear);
+        <div> Violence Rating:</div> @Html.TextBoxFor(m => m.Games.Violence_Rating);
+        <div> Company:</div> @Html.TextBoxFor(m => m.Games.Company);
+        <input type="submit" value="Submit" />
         </fieldset>
-    }
+    };
 
 
     @*@using (Html.BeginForm("Display", "Home"))
-    {
-        <table class="table table-condensed">
-           <thead>
-             <tr>
-                <th>Name</th>
-                <th>Genre</th>
-                <th>Publish Year</th>
-                <th>Cost</th>
-                <th>Violence Rating</th>
-                <th>Company</th>
-             </tr>
-               <tbody>
-                   <tr></tr>
-               </tbody>
-           </thead>
+        {
+            <table class="table table-condensed">
+               <thead>
+                 <tr>
+                    <th>Name</th>
+                    <th>Genre</th>
+                    <th>Publish Year</th>
+                    <th>Cost</th>
+                    <th>Violence Rating</th>
+                    <th>Company</th>
+                 </tr>
+                   <tbody>
+                       <tr></tr>
+                   </tbody>
+               </thead>
 
-        </table>
-        @Html.TextBox() 
-    }*@
+            </table>
+            @Html.TextBox()
+        }*@
 
 
 
 </body>
+
 </html>

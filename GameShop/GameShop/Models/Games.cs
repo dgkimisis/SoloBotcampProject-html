@@ -8,14 +8,12 @@ namespace GameShop.Models
 
     public partial class Games
     {
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        [StringLength(50)]
         public string Name { get; set; }
 
         public int? PublishYear { get; set; }
 
-        [StringLength(50)]
         public string Genre { get; set; }
 
         [Column("Violence Rating")]

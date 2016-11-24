@@ -7,8 +7,11 @@ namespace GameShop.Models
 {
     public class SearchViewModel
     {
-        public Games Game { get; set; }
+        public Games Games { get; set; }
         public int min { get; set; }
         public int max { get; set; }
+        public List<string> Genre { get; set; }
+        public int? Quantity { get; set; }
+
     }
 }
